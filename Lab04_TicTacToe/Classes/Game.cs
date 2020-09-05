@@ -48,18 +48,18 @@ namespace Lab04_TicTacToe.Classes
              */
 
             bool checker = CheckForWinner(Board);
+            int count = 0;
 
-            Player currPlayer = NextPlayer();
-
-            while (checker != true)
+            while (checker != true && count < 9)
             {
-                checker = CheckForWinner(Board);
-                currPlayer = NextPlayer();
+                Player currPlayer = NextPlayer();
                 Board.DisplayBoard();
                 currPlayer.TakeTurn(Board);
+                checker = CheckForWinner(Board);
                 if (checker == true)
                     return currPlayer;
                 SwitchPlayer();
+                count++;
             }
             return new Player("C", "Cat's Game");
         }
